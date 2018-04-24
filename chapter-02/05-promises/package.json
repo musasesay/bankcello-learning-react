@@ -1,0 +1,15 @@
+{
+  "name": "05-promises",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getFakeMembersTest.js",
+  "scripts": {
+    "test": "npm getFakeMembersTest.js"
+  },
+  "author": "John D. Aynedjian",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.85.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
