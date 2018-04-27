@@ -9,6 +9,7 @@
   "author": "John D. Aynedjian",
   "license": "ISC",
   "dependencies": {
+    "package.json": "^2.0.1",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5"
   }
