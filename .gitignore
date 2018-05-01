@@ -1,6 +1,8 @@
 *~
 *.swp
 *.out 
+bundle.js
+bundle.map
 
 .DS_Store
 .idea/
