@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>02 - Color Component with refs</title>
+</head>
+<body>
+<div id="react-container"></div>
+
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+
+    const { Component } = React
+    const { render } = ReactDOM
+
+    let monoStyle={ fontFamily: 'courier' };
+
+    class AddColorForm extends Component {
+
+      constructor(props) {
+        super(props)
+        this.submit = this.submit.bind(this)
+      }
+
+      submit(e) {
+        const { _title, _color } = this.refs
+        e.preventDefault()
+        alert(`New Color: ${_title.value} ${_color.value}
+		Let off some steam, Bennett!
+		`)
+		// reset the values...
+        _title.value = ''
+        _color.value = '#000000'
+		// ...and re-focus...
+        _title.focus()
+      }
+
+      render() {
+          return (
+			  <div>
+              <form onSubmit={this.submit}>
+                  <input ref="_title"
+                         type="text"
+                         placeholder="color title..." required/>
+                  <input ref="_color"
+                         type="color" required/>
+                  <button>ADD</button>
+              </form>
+			  <img src="../../images/kwanyin-nice-172x300.jpg" style={{float: 'left'}}>
+			  <p style={{color: 'purple', fontFamily: 'comic sans ms'}}>
+				Creating <span style={monoStyle}>_title</span> and <span style={monoStyle}>_color</span> <span style={monoStyle}>ref</span> attributes for each<br />
+				input means that we can access those elements with<br />
+				<span style={monoStyle}>this.refs._title</span> or <span style={monoStyle}>this.refs._color</span>.  You like...?
+			  </p>	
+			  </div>
+          )
+      }
+
+    }
+
+    render(
+      <AddColorForm />,
+      document.getElementById('react-container')
+    )
+
+</script>
+
+</body>
+</html>
