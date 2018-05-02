@@ -52,6 +52,30 @@
         render() {
             const {totalStars} = this.props
             const {starsSelected} = this.state
+
+			// Use spread operator with Array() constructor
+			// to initialize a new array of a specific
+			// length that is mapped to Star elements... 
+			// (Array has length `undefined` elements)
+			const moe = [...Array(totalStars)]; 
+			console.log("moe=", moe);
+
+			// wrong way...an array containing an array...
+			const larry = [Array(totalStars)]; 
+			console.log("larry=", larry);
+
+			// pre ES6 way...not quite...this is an empty array...
+			const shemp=[];
+			shemp.push(Array(totalStars))
+			console.log("shemp=", shemp);
+
+			// Or, even...(gasp!)...using new...
+			const curly = new Array(totalStars);
+			console.log("curly=", curly);
+
+			//const curly_joe = [].slice().push(Array(totalStars));
+			//console.log("curly_joe=", curly_joe);
+
             return (
                 <div className="star-rating">
                     {[...Array(totalStars)].map((n, i) =>

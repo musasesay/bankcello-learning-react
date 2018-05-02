@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>03 - Two way data binding</title>
+    <title>03 - Two way data binding - 1.1.1</title>
 </head>
 <body>
 <div id="react-container"></div>
@@ -31,6 +31,7 @@
       }
       render() {
           return (
+			<div>
               <form onSubmit={this.submit}>
                   <input ref="_title"
                          type="text"
@@ -39,12 +40,24 @@
                          type="color" required/>
                   <button>ADD</button>
               </form>
+			  <img src="../../images/kwanyin-nice-172x300.jpg" style={{float: 'left', margin: '10px'}} />
+			  <p style={{color: 'purple', fontFamily: 'comic sans ms', maxWidth: '45em'}}>
+A common solution for collecting data from a React component is inverse data flow.
+It is similar to, and sometimes described as, two-way data binding. It involves
+sending a callback function to the component as a property that the component
+can use to pass data back as arguments. It’s called inverse data flow because
+we send the component a function as a property, and the component sends data
+back as function arguments.<br />
+<br />
+Banks, Alex; Porcello, Eve. Learning React: Functional Web Development with React and Redux (p. 121). O'Reilly Media. Kindle Edition. 
+			  </p>	
+			</div>
           )
       }
     }
 
     const logColor = (title, color) =>
-        console.log(`New Color: ${title} | ${color}`)
+        console.log(`Received from AddColorForm via \`logColor()\` callback: New Color: ${title} | ${color}`)
 
     render(
       <AddColorForm onNewColor={logColor} />,

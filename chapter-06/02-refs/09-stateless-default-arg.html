@@ -16,7 +16,9 @@
     const { Component } = React
     const { render } = ReactDOM
 
-    const AddColorForm = ({onNewColor=f=>f}) => {
+    /* const AddColorForm = ({onNewColor=f=>f}) => { */
+
+	const AddColorForm = ({onNewColor=(...args)=>{console.log("Let off some", args, ", Bennett!")}}) => {
 
         let _title, _color
 
@@ -29,6 +31,7 @@
         }
 
         return (
+			<div>
             <form onSubmit={submit}>
                 <input ref={input => _title = input}
                        type="text"
@@ -37,6 +40,14 @@
                        type="color" required/>
                 <button>ADD</button>
             </form>
+			<p>Instead of...</p> 
+			<pre>
+				    AddColorForm.defaultProps = &#123;
+			        onNewColor: f=>f
+					&#125;
+			</pre>
+			we use default arg...
+			</div>
         )
 
     }

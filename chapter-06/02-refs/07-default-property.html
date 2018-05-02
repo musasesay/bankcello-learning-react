@@ -24,11 +24,13 @@
       //
 
       static propTypes = {
+          //onNewColor: PropTypes.func.isRequired
           onNewColor: PropTypes.func
       }
 
       static defaultProps = {
-          onNewColor: f=>f
+		  //onNewColor: f=>f // do-nothing default function
+		  onNewColor: (...args)=>{ console.log("Default func for onNewColor(...args): args =", args) }
       }
 
       constructor(props) {
@@ -60,8 +62,14 @@
 
     }
 
+    const logColor = (title, color) =>
+        console.log(`Received from AddColorForm via \`logColor()\` callback: New Color: ${title} | ${color}`)
+
     render(
-      <AddColorForm />,
+	  /*<AddColorForm onNewColor={{name: 'Joe'}} />,*/
+	  /*<AddColorForm onNewColor={(...args)=>{alert("Let off some "+JSON.stringify(args)+", Bennett!")}} />,*/
+	  /*<AddColorForm onNewColor={logColor}>,*/
+	  <AddColorForm />,
       document.getElementById('react-container')
     )
 

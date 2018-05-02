@@ -33,6 +33,9 @@
         if (this.props.onNewColor) {
             this.props.onNewColor(_title.value, _color.value)
         }
+		else {
+			console.log("Hmmm...looks like this.props.onNewColor() ain't been supplied, Moe...");
+		}
 
         _title.value = '';
         _color.value = '#000000';

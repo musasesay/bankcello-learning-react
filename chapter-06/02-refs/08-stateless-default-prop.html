@@ -23,17 +23,26 @@
 
         const submit = e => {
             e.preventDefault()
+			console.log("_title=", _title);
+			//console.log(`_title="${JSON.stringify(_title)}"`); // error: converting circular structure to JSON
+			console.log("_title.value=", _title.value);
+			console.log("_color=", _color);
+			console.log("_color.value=", _color.value);
             onNewColor(_title.value, _color.value)
             _title.value = ''
             _color.value = '#000000'
             _title.focus()
         }
 
+		/* Use callback as ref's value to set local variables... */
         return (
             <form onSubmit={submit}>
-                <input ref={input => _title = input}
+				{/*<input ref={input => _title = input}
                        type="text"
-                       placeholder="color title..." required/>
+					   placeholder="color title..." required/>*/}
+				<input ref={input => { console.log("Settin' _title=input=",input,", Moe..."); _title = input}}
+                       type="text"
+					   placeholder="color title..." required/>
                 <input ref={input => _color = input}
                        type="color" required/>
                 <button>ADD</button>
