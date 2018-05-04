@@ -46,6 +46,16 @@
           }
       }
 
+	/** 
+	* NOTA BENE: Calling setState() before the component has rendered will not kick off the updating
+	* lifecycle. Calling setState() after the component has been rendered will kick off the
+	* updating lifecycle. If you call setState() inside an asynchronous callback defined within
+	* the componentWillMount() method, it will be invoked after the component has rendered
+	* and will trigger the updating lifecycle.
+	* 
+	* Banks, Alex; Porcello, Eve. Learning React: Functional Web Development with React and Redux
+	* (p. 144). O'Reilly Media. Kindle Edition. 
+	*/
       componentWillMount() {
           this.setState({loading: true})
           getFakeMembers(this.props.count).then(
@@ -59,7 +69,8 @@
       }
 
       componentWillUpdate() {
-          console.log('updating lifecycle')
+		  let sWho="componentWillUpdate";
+		  console.log(`${sWho}(): updating lifecycle...`)
       }
 
       render() {
