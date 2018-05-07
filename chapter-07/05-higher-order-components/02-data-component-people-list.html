@@ -6,6 +6,11 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+    .code {
+        font-family: "courier"
+    }
+    </style>
     <title>Higher Order Components</title>
 </head>
 <body>
@@ -50,13 +55,25 @@
           }
       }
 
-    const PeopleList = ({data}) =>
+    const PeopleList = ({data}) => {
+
+      let paraStyle={color: 'purple', fontFamily: 'Arial'};
+
+      return (
+      <div>
       <ol className="people-list">
           {data.results.map((person, i) => {
               const {first, last} = person.name
               return <li key={i}>{first} {last}</li>
           })}
       </ol>
+      <p style={paraStyle}><span className="code">DataComponent</span> is actually a function.
+      All higher-order components are functions</p>
+      <p style={paraStyle}><span className="code">ComposedComponent</span> is the component that we will wrap.</p> 
+
+      </div>
+      )
+      }
 
     const RandomMeUsers = DataComponent(
                             PeopleList,
