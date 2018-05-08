@@ -90,7 +90,7 @@
       }
     })
 
-    /* CountDispatcher : Dispatches actions for the Countodown
+    /* CountDispatcher : Dispatches actions for the Countdown
     ************************************************************/
 
     class CountdownDispatcher extends Dispatcher {
@@ -141,15 +141,35 @@
 
     /* Flux App : Put it all together
     ************************************************************/
+	/* Create the appDispatcher... */
     const appDispatcher = new CountdownDispatcher()
+	/* Use the appDispatcher to generate our action creators... */
     const actions = countdownActions(appDispatcher)
+    /* Register the appDispatcher with our store, and
+	* the store sets the initial count to 10...
+	*/
     const store = new CountdownStore(10, appDispatcher)
 
+	/* The render() method renders the view with a count
+	* it receives as an argument.  It also passes the
+	* action creators to the view as properties.
+	*/
     const render = count => ReactDOM.render(
       <Countdown count={count} {...actions} />,
       document.getElementById('react-container')
     )
 
+	/* Complete the circle by adding some listeners
+	* to the store.  When the store emits a TICK
+	* or RESET, it yields a new count, which is
+	* immediately rendered in the view.
+	* After that, the initial view is rendered
+	* with the store's count.
+	* Every time the view emits a TICK or RESET,
+	* the action is sent through this circle and 
+	* eventually comes back to the view as data that
+	* is ready to be rendered.
+	*/
     store.on("TICK", ()=> render(store.count))
     store.on("RESET", ()=> render(store.count))
     render(store.count)
