@@ -26,19 +26,36 @@
       request.send()
   })
 
-  const Member = ({ email, picture, name, location }) =>
-      <div className="member">
+  const h3_style={color: 'purple'};
+
+  const Membre = ( props ) => {
+        let sWho = "Membre"
+        console.log(`${sWho}(): props = `, props );
+        return (
+      <span className="member">
+          <img src={props.picture.large} alt="" />
+          <h3 style={h3_style}>babe #{props.monkey+1}: {props.name.first} {props.name.last}</h3>
+          <p><a href={"mailto:" + props.email}>{props.email}</a></p>
+          <p>{props.location.city}, {props.location.state}</p>
+      </span>
+      )
+    }
+
+  const Member = ({ email, picture, name, location, monkey } ) =>
+      <span className="member">
           <img src={picture.large} alt="" />
-          <h1>{name.first} {name.last}</h1>
+          <h3 style={h3_style}>babe #{monkey+1}: {name.first} {name.last}</h3>
           <p><a href={"mailto:" + email}>{email}</a></p>
           <p>{location.city}, {location.state}</p>
-      </div>
+      </span>
 
 
   class MemberList extends Component {
 
-      constructor() {
-          super()
+      constructor(props) {
+          super(props)
+          let sWho = "MemberList::constructor";
+          console.log(`${sWho}(): props = `, props );
           this.state = {
               members: [],
               loading: false,
@@ -57,6 +74,9 @@
 	* (p. 144). O'Reilly Media. Kindle Edition. 
 	*/
       componentWillMount() {
+		  let sWho="componentWillMount";
+		  console.log(`${sWho}()...`);
+
           this.setState({loading: true})
           getFakeMembers(this.props.count).then(
               members => {
@@ -68,24 +88,43 @@
           )
       }
 
+      componentDidMount() {
+		  let sWho="componentDidMount";
+		  console.log(`${sWho}()...`);
+      }
+
       componentWillUpdate() {
 		  let sWho="componentWillUpdate";
 		  console.log(`${sWho}(): updating lifecycle...`)
       }
 
+      componentDidUpdate() {
+		  let sWho="componentDidUpdate";
+		  console.log(`${sWho}(): updating lifecycle...`)
+      }
+
       render() {
+          const sWho = "render"
+
           const { members, loading, error } = this.state
           return (
               <div className="member-list">
                   {(loading) ?
                       <span>Loading Members</span> :
                       (members.length) ?
-                          members.map((user, i) =>
-                              <Member key={i} {...user} />
+                          members.map((user, i) => {
+                              let user2 = {...user, monkey: i}
+                              //let user2 = Object.assign(user, {monkey: i})
+                              console.log(`${sWho}(): user2=`,user2);
+                              return (
+                              <Member key={i} {...user2} />
+                              )
+                          }
                           ) :
                           <span>0 members loaded...</span>
                   }
                   {(error) ? <p>Error Loading Members: {error.message}</p> : ""}
+                <h2 style={{color: 'green', fontFamily: 'courier'}}>Let off some steam, Bennett!</h2>
         </div>
       )
     }

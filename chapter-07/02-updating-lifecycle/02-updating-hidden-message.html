@@ -29,7 +29,11 @@
       //
 
       componentWillReceiveProps(nextProps) {
-          this.setState({hidden: nextProps.hide})
+          let sWho = "componentWillReceiveProps"
+          console.log(`${sWho}(): nextProps = `, nextProps );
+          let newState ={hidden: nextProps.hide};
+          console.log(`${sWho}(): SHEMP: Moe, callin' this.setState(newState = nextProps.hide =`, newState, ` )...`) 
+          this.setState(newState);
       }
 
       render() {
@@ -67,9 +71,10 @@
                 let { showing, messages } = prevState
                 showing = (++showing >= messages.length) ?
                   -1 : showing
+                console.log("TIMER: this.setState() returning {showing=", showing,"}...");
                 return {showing}
               })
-          }, 1000)
+          }, 5000)
       }
 
       componentWillUnmount() {

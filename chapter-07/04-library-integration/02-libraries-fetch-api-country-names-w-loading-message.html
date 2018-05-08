@@ -27,10 +27,13 @@
 
     componentWillMount() {
       this.setState({ loading: true })
+      // Simulate additional 5 second latency...
+      setTimeout( () => { 
       fetch('https://restcountries.eu/rest/v1/all')
         .then(response => response.json())
         .then(json => json.map(country => country.name))
         .then(countryNames => this.setState({countryNames, loading: false}))
+        }, 5000 );
     }
 
     render() {

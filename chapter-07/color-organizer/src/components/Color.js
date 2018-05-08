@@ -6,23 +6,40 @@ import '../../stylesheets/Color.scss'
 class Color extends Component {
 
     componentWillMount() {
+        const sWho = "componentWillMount";
+        console.log(`${sWho}()...`);
         this.style = { backgroundColor: "#CCC" }
     }
 
     shouldComponentUpdate(nextProps) {
+        const sWho = "shouldComponentUpdate";
         const { rating } = this.props
-        return rating !== nextProps.rating
+        if( rating !== nextProps.rating ){
+            console.log(`${sWho}(): returning true...`);
+            return true;
+        }
+        else{
+            console.log(`${sWho}(): returning false...`);
+            return true;
+        }
+        //return rating !== nextProps.rating
     }
 
     componentWillUpdate(nextProps) {
+        const sWho = "componentWillUpdate";
+        console.log(`${sWho}()...`);
+
         const { title, rating } = this.props
         this.style = null
         this.refs.title.style.backgroundColor = "red"
         this.refs.title.style.color = "white"
-        alert(`${title}: rating ${rating} -> ${nextProps.rating}`)
+        console.log(`${title}: rating ${rating} -> ${nextProps.rating}`)
     }
 
     componentDidUpdate(prevProps) {
+        const sWho = "componentDidUpdate";
+        console.log(`${sWho}()...`);
+
         const { title, rating } = this.props
         const status = (rating > prevProps.rating) ? 'better' : 'worse'
         console.log(`${title} is getting ${status}`)
