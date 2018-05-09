@@ -36,6 +36,10 @@
     }
 
     const colors = (state = [], action) => {
+
+      console.log("colors reducer: state=", state)
+      console.log("colors reducer: action=", action)
+
       switch (action.type) {
           case "ADD_COLOR" :
               return [
@@ -68,10 +72,10 @@
       combineReducers({ colors, sort })
     )
 
-
+    console.log('initial state =', store.getState())
 
     store.subscribe(() =>
-      console.log('next state', store.getState())
+      console.log('subscriber: next state =', store.getState())
     )
 
     store.dispatch({

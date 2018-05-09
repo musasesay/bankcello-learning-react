@@ -91,12 +91,14 @@
       }
     }
 
+    console.log("initialState = ", initialState );
+
     const store = createStore(
       combineReducers({ colors, sort }),
       initialState
     )
 
-    console.log(store.getState())
+    console.log("store.getState=()",store.getState())
 
 
   </script>
