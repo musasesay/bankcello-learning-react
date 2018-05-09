@@ -12,6 +12,8 @@
   <script type="text/babel">
 
       const sort = (state="SORTED_BY_DATE", action) => {
+		  console.log("sort reducer: state = ", state );
+		  console.log("sort reducer: action = ", action);
           switch (action.type) {
               case "SORT_COLORS":
                   return action.sortBy
@@ -21,15 +23,15 @@
       }
 
       let state = "SORTED_BY_DATE"
-
-
+      console.log( "start: state = ", state)
 
       let action =  {
            type: "SORT_COLORS",
            sortBy: "SORTED_BY_TITLE"
       }
       let nextState = sort(state, action)
-      console.log( nextState )
+      console.log( "nextState = ", nextState )
+
 
 
       action = {
@@ -37,7 +39,7 @@
            sortBy: "SORTED_BY_RATING"
       }
       nextState = sort(nextState, action)
-      console.log( nextState )
+      console.log( "nextState = ", nextState )
 
 
       action = {
@@ -45,7 +47,7 @@
            sortBy: "SORTED_BY_DATE"
       }
       nextState = sort(nextState, action)
-      console.log( nextState )
+      console.log( "nextState = ", nextState )
 
   </script>
 </body>

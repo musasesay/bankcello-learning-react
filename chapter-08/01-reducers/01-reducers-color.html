@@ -11,7 +11,11 @@
 <div id="react-container"></div>
   <script type="text/babel">
 
-      const color = (state = {}, action) => {
+      const colorReducer = (state = {}, action) => {
+
+	    console.log("color reducer: state = ", state)
+	    console.log("color reducer: action = ", action);
+
         switch (action.type) {
             case "ADD_COLOR":
                 return {
@@ -42,9 +46,11 @@
          rating: 0
       }
 
-      let newColor = color({}, action)
+	  //console.log( "Executing newColor = colorReducer({}, action = ", action, ")...");
 
-      console.log( newColor )
+      let newColor = colorReducer({}, action)
+
+	  console.log("new Color = ", newColor );
 
       action = {
          type: "RATE_COLOR",
@@ -52,9 +58,11 @@
          rating: 4
       }
 
-      newColor = color(newColor, action)
+	  //console.log( "Executing newColor = colorReducer(newColor, action = ", action, ")...")
 
-      console.log( newColor )
+      newColor = colorReducer(newColor, action)
+
+	  console.log("new Color = ", newColor );
 
   </script>
 </body>

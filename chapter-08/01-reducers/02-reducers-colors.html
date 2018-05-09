@@ -12,6 +12,8 @@
   <script type="text/babel">
 
     const color = (state = {}, action) => {
+	  console.log("color reducer: state = ", state);
+	  console.log("color reducer: action = ", action);
       switch (action.type) {
           case "ADD_COLOR":
               return {
@@ -34,6 +36,10 @@
     }
 
     const colors = (state = [], action) => {
+
+	  console.log("colors reducer: state = ", state);
+	  console.log("colors reducer: action = ", action);
+
       switch (action.type) {
           case "ADD_COLOR" :
               return [
@@ -62,7 +68,7 @@
       timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
     }
     ]
-    console.log(currentColors)
+    console.log("BEGIN: currentColors=",currentColors)
 
 
 
@@ -74,7 +80,7 @@
       timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)"
     }
     let newColors = colors(currentColors, action)
-    console.log( newColors )
+    console.log("newColors = ", newColors )
 
 
 
@@ -84,7 +90,7 @@
      rating: 5
     }
     newColors = colors(newColors, action)
-    console.log( newColors )
+    console.log("newColors = ", newColors )
 
 
 
@@ -93,7 +99,7 @@
      id: 2
     }
     newColors = colors(newColors, action)
-    console.log( newColors )
+    console.log("newColors = ", newColors )
 
 
   </script>
