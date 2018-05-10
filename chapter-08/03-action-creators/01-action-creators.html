@@ -113,7 +113,10 @@
     store.dispatch(addColor("Tomato", "#990000"))
     store.dispatch(addColor("Big Blue", "#0000FF"))
 
-    console.log(store.getState().colors.map(c=>c.title).join(", "))
+    console.log("store.getState()= ", store.getState() );
+
+    console.log("titles = ", store.getState().colors.map(c=>c.title).join(", "))
+
 
 
   </script>
