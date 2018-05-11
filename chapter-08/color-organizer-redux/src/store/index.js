@@ -13,7 +13,16 @@ import stateData from '../../data/initialState'
 // a function that returns a function.  The last function
 // returned is invoked every time an action is dispatched.
 //
-// When... 
+// When this function is invoked, you have
+// access to the action, the store, and the function for
+// sending the action to the next middleware.
+//
+// In the logger, before the action is dispatched, we
+// open a new console group and log the current state
+// and the current action.  Invoking `next` pipes
+// the action on to the next piece of middleware and eventually
+// the reducers.  The state at this point has been updated,
+// so we can log the changed state and end the console group.
 const logger = store => next => action => {
     let result
     console.groupCollapsed("dispatching", action.type)
@@ -25,7 +34,8 @@ const logger = store => next => action => {
     return result
 }
 
-// English Translation:
+//
+// In English:
 //
 // (It's a function that returns a function that returns a function...)
 //
@@ -44,6 +54,9 @@ const logger = store => next => action => {
 //     };
 // };
 
+// In the saver, we invoke `next` with the action, which
+// will cause the state to change.  Then we save the
+// new state in `localStorage` and return the result...
 const saver = store => next => action => {
     let result = next(action)
     localStorage['redux-store'] = JSON.stringify(store.getState())
@@ -60,6 +73,16 @@ const saver = store => next => action => {
 //
 //   const store = storeFactory(initialData)
 //
+// Instead of exporting the store directly, we export
+// a function, a factory that can be used to create
+// stores.  If this factory is invoked, then it will
+// create and return a store that incorporates logging
+// and saving.
+//
+// CHEF DANNON of CHEF'S INSTITUTE OF AMERICA: Don't work
+// in a hotel, me boy...it's a factory...
+//
+// @reference: https://redux.js.org/api-reference/applymiddleware
 const storeFactory = (initialState=stateData) =>
     applyMiddleware(logger, saver)(createStore)(
         combineReducers({colors, sort}),
