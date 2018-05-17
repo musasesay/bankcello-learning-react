@@ -9,6 +9,8 @@ import { rateColor, removeColor } from '../actions'
 class Color extends Component {
 
     render() {
+		const sWho = "Color::render";
+		console.log(`${sWho}(): this.style=`, this.style)
         const { id, title, color, rating, timestamp } = this.props
         const { store } = this.context
         return (
