@@ -6,12 +6,27 @@ import TimeAgo from './TimeAgo'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import { rateColor, removeColor } from '../actions'
 
+/**
+* How to Use `context` in a Component Class Without Really Trying
+* ===============================================================
+* The Color component can retrieve the store and
+* dispatch RATE_COLOR and REMOVE_COLOR actions
+* directly.
+* (1) Color is now a component class, and can access
+*     context via `this.context`.
+* (2) Colors are now read directly from the store via
+*     `store.getState()`.
+* (3) The same rules apply that do for stateless
+*     functional components.  `contextTypes` must be
+*     defined on the instance.
+*/
 class Color extends Component {
 
     render() {
 		const sWho = "Color::render";
 		console.log(`${sWho}(): this.style=`, this.style)
         const { id, title, color, rating, timestamp } = this.props
+
         const { store } = this.context
         return (
             <section className="color" style={this.style}>
