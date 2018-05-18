@@ -1,5 +1,5 @@
 {
-  "colors": [
+ "colors": [
     {
       "id": "8658c1d0-9eda-4a90-95e1-8001e8eb6036",
       "title": "Ocean Blue",
@@ -27,7 +27,42 @@
       "color": "#ff00f7",
       "rating": 5,
       "timestamp": "Wed Mar 9 2016 03:26:00 GMT-0800 (PST)"
+    },
+    {
+     "id": "057aaffa-7156-4593-add6-c879b23a990c",
+     "title": "մանուշակագույն",
+     "color": "#8000ff",
+     "timestamp": "Wed May 16 2018 22:13:36 GMT-0400 (Eastern Daylight Time)",
+     "rating": 5
+    },
+    {
+     "id": "1aedf524-fca2-45ca-9d58-ceba19471594",
+     "title": "նարինջ",
+     "color": "#ff8000",
+     "timestamp": "Thu May 10 2018 22:21:50 GMT-0400 (Eastern Daylight Time)",
+     "rating": 4
+    },
+    {
+     "id": "1a556813-287e-44a5-8063-584060b8dbfc",
+     "title": "կանաչ",
+     "color": "#008000",
+     "timestamp": "Wed May 16 2018 22:16:04 GMT-0400 (Eastern Daylight Time)",
+     "rating": 3
+    },
+    {
+     "id": "c4ff7b02-97e4-4819-9831-0b0b48f41e39",
+     "title": "սեվ",
+     "color": "#000000",
+     "timestamp": "Wed May 16 2018 22:19:47 GMT-0400 (Eastern Daylight Time)",
+     "rating": 0
+    },
+    {
+     "id": "63e2a73d-7414-4667-9ba4-0142fb56bd22",
+     "title": "կապույտ",
+     "color": "#0000ff",
+     "timestamp": "Wed May 16 2018 22:21:21 GMT-0400 (Eastern Daylight Time)",
+     "rating": 0
     }
-  ],
+],
   "sort": "SORTED_BY_DATE"
 }
