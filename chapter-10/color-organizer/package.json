@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "lint-watch": "esw --watch .",
     "lintit": "eslint",
     "build": "webpack --progress",
     "prestart": "npm run build",
