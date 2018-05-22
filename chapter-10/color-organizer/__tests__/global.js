@@ -3,6 +3,10 @@ import deepFreeze from 'deep-freeze'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
+/** Add React, colors, etc. to the global scope
+* before any tests are run...
+*/
+
 Enzyme.configure({ adapter: new Adapter() })
 
 global.React = React

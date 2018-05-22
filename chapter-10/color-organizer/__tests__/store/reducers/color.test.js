@@ -8,7 +8,7 @@ import deepFreeze from 'deep-freeze'
 */
 describe('color Reducer', () => {
 
-    it('ADD_COLOR success', () => {
+    it('ADD_COLOR reducer', () => {
         const state = {}
         const action = {
             type: C.ADD_COLOR,
@@ -30,7 +30,7 @@ describe('color Reducer', () => {
             })
     })
 
-    it('RATE_COLOR success', ()=>{
+    it('RATE_COLOR reducer', ()=>{
         
         const state = { 
             id: 0,
@@ -47,17 +47,19 @@ describe('color Reducer', () => {
         deepFreeze(state)
         deepFreeze(action)
         const results = color(state, action)
-//        expect(results)
-//            .toEqual({
-//                id: 0,
-//                title: 'Test Teal',
-//                color: '#90C3D4',
-//                timestamp: 'Sat Mar 12 2016 16:12:09 GMT-0800 (PST)',
-//                rating: 3
-//            })
         expect(results)
             .toEqual({
-            ...state, rating: 3        
+                id: 0,
+                title: 'Test Teal',
+                color: '#90C3D4',
+                timestamp: 'Sat Mar 12 2016 16:12:09 GMT-0800 (PST)',
+                rating: 3
             })
+
+        // to cutesy...?
+        //expect(results)
+        //    .toEqual({
+        //    ...state, rating: 3        
+        //    })
     })
 })
