@@ -7,4 +7,5 @@ REM is required for this to work.
 npm install --save-dev babel-jest
 REM If you want eslint to be watched
 REM but without using webpack to do so...
+npm install -g eslint-plugin-react
 npm install -g eslint-watch

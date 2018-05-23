@@ -2,13 +2,9 @@ import C from '../../../src/constants'
 import { color } from '../../../src/store/reducers'
 import deepFreeze from 'deep-freeze'
 
-/**
-* <*> Use deepFreeze() to ensure function parameters
-* are not mutated...
-*/
-describe('color Reducer', () => {
+describe("color Reducer", () => {
 
-    it('ADD_COLOR reducer', () => {
+    it("ADD_COLOR success", () => {
         const state = {}
         const action = {
             type: C.ADD_COLOR,
@@ -19,8 +15,8 @@ describe('color Reducer', () => {
         }
         deepFreeze(state)
         deepFreeze(action)
-        const results = color(state, action)
-        expect(results)
+        const result = color(state, action)
+        expect(result)
             .toEqual({
                 id: 0,
                 title: 'Test Teal',
@@ -30,9 +26,8 @@ describe('color Reducer', () => {
             })
     })
 
-    it('RATE_COLOR reducer', ()=>{
-        
-        const state = { 
+    it("RATE_COLOR success", () => {
+        const state = {
             id: 0,
             title: 'Test Teal',
             color: '#90C3D4',
@@ -46,8 +41,8 @@ describe('color Reducer', () => {
         }
         deepFreeze(state)
         deepFreeze(action)
-        const results = color(state, action)
-        expect(results)
+        const result = color(state, action)
+        expect(result)
             .toEqual({
                 id: 0,
                 title: 'Test Teal',
@@ -55,11 +50,9 @@ describe('color Reducer', () => {
                 timestamp: 'Sat Mar 12 2016 16:12:09 GMT-0800 (PST)',
                 rating: 3
             })
-
-        // to cutesy...?
-        //expect(results)
-        //    .toEqual({
-        //    ...state, rating: 3        
-        //    })
     })
+
+    it("Defaults array for incorrect action", () =>
+        expect(color()).toEqual({}))
+
 })
