@@ -2,13 +2,24 @@ import { Router } from 'express'
 import C from '../constants'
 import { v4 } from 'uuid'
 
-const router = Router()
+/* Our Express Router... */
+const router = Router() 
 
+/* Every action created is handled the same way:
+* it is dispatched on the server and then it
+* is sent to the client.
+*
+* (1) Dispatch the action to the `serverStore`
+* (2) Send the action to the client via the response object.
+*/
 const dispatchAndRespond = (req, res, action) => {
     req.store.dispatch(action)
     res.status(200).json(action)
 }
 
+/* HTTP Endpoints via the Express (domain-specific language)
+* `Router`...
+*/
 router.get("/colors", (req, res) =>
     res.status(200).json(req.store.getState().colors)
 )

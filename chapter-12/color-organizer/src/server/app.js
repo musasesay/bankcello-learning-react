@@ -1,17 +1,24 @@
 import express from 'express'
 import path from 'path'
+/* Use Express bodyParser middleware to parse incoming
+* requests and obtain any variables sent to the routes.
+*/
 import bodyParser from 'body-parser'
 import fs from 'fs'
 import { Provider } from 'react-redux'
 import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
+/* Our color api...as middleware... */
 import api from './color-api'
 import App from '../components/App'
 import storeFactory from '../store'
 import initialState from '../../data/initialState.json'
 
+/* staticCSS: middleware to handle (and "compile") SCSS gracefully... */
 const staticCSS = fs.readFileSync(path.join(__dirname, '../../dist/assets/bundle.css'))
+
+/* fileAssets: middleware to handle static assets... */
 const fileAssets = express.static(path.join(__dirname, '../../dist/assets'))
 
 const serverStore = storeFactory(true, initialState)
