@@ -7,6 +7,9 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <title>Updating Lifecycle</title>
+    <style>
+    body {font-family: sans-serif}
+    </style>
 </head>
 <body>
 <div id="react-container"></div>
@@ -15,18 +18,18 @@
   const { Component } = React
   const { render } = ReactDOM
 
-  class HiddenMessage extends Component {
+  const HiddenMessage = ( props ) => {
 
-      constructor(props) {
-          super(props)
-          this.state = {
-              hidden: (props.hide) ? props.hide : true
-          }
-      }
+          let sWho = "HiddenMessage()[stateless component]";
+          console.log( sWho + "(): props = ", props );
 
-      render() {
-          const { children } = this.props
-          const { hidden } = this.state
+          // Trickey dickey...but you can do a fancy destructuring
+          // assignment to assign object.hide to hidden...
+          const { children, hide:hidden } = props
+
+          console.log( sWho + "(): children = ", children );
+          console.log( sWho + "(): hidden = ", hidden );
+
           return (
               <p>
                   {(hidden) ?
@@ -35,9 +38,8 @@
                   }
               </p>
           )
-      }
-
   }
+
 
   class HiddenMessages extends Component {
 
@@ -65,7 +67,7 @@
                   -1 : showing
                 return {showing}
               })
-          }, 1000)
+          }, 2000)
       }
 
       componentWillUnmount() {
@@ -88,7 +90,10 @@
   }
 
   render(
-      <HiddenMessages />,
+      <div>
+      <p style={{color: 'purple'}}>Really, old boy, the child should be a stateless component...</p>
+      <HiddenMessages />
+      </div>,
       document.getElementById('react-container')
   )
 

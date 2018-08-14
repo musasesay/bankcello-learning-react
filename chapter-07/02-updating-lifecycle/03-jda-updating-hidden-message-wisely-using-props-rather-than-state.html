@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Updating Lifecycle</title>
+    <style>
+    body {font-family: sans-serif}
+    </style>
+</head>
+<body>
+<div id="react-container"></div>
+  <script type="text/babel">
+
+  const { Component } = React
+  const { render } = ReactDOM
+
+  class HiddenMessage extends Component {
+
+      constructor(props) {
+          super(props)
+          // tsk, tsk, it's something of an anti-pattern
+          // to base state on props...
+          //this.state = {
+          //    hidden: (props.hide) ? props.hide : true
+          //}
+      }
+
+      render() {
+          let sWho = "HiddenMessage::render";
+          console.log( sWho + "(): this.props = ", this.props );
+          const { children } = this.props
+          //const { hidden } = this.state
+
+          // Trickey dickey...but you can do a fancy destructuring
+          // assignment to assign object.hide to hidden...
+          const { hide:hidden } = this.props
+          console.log( sWho + "(): children = ", children );
+          console.log( sWho + "(): hidden = ", hidden );
+          return (
+              <p>
+                  {(hidden) ?
+                      children.replace(/[a-zA-Z0-9]/g, "x") :
+                      children
+                  }
+              </p>
+          )
+      }
+
+  }
+
+  class HiddenMessages extends Component {
+
+      constructor(props) {
+          super(props)
+          this.state = {
+              messages: [
+                  "The crow crows after midnight",
+                  "Bring a watch and dark clothes to the spot",
+                  "Jericho Jericho Go"
+              ],
+              showing: -1
+          }
+      }
+
+      //
+      //  Problem: we should a message every second
+      //
+
+      componentWillMount() {
+          this.interval = setInterval(() => {
+              this.setState(prevState => {
+                let { showing, messages } = prevState
+                showing = (++showing >= messages.length) ?
+                  -1 : showing
+                return {showing}
+              })
+          }, 2000)
+      }
+
+      componentWillUnmount() {
+          clearInterval(this.interval)
+      }
+
+      render() {
+          const { messages, showing } = this.state
+          return (
+              <div className="hidden-messages">
+                  {messages.map((message, i) =>
+                      <HiddenMessage key={i}
+                                     hide={(i!==showing)}>
+                          {message}
+                      </HiddenMessage>
+                  )}
+              </div>
+          )
+      }
+  }
+
+  render(
+      <div>
+      <p style={{color: 'purple'}}>Really, old boy, if you want the parent to update the child, do it <i>prop</i>-erly via props in the child...</p>
+      <HiddenMessages />
+      </div>,
+      document.getElementById('react-container')
+  )
+
+
+
+  </script>
+</body>
+</html>
