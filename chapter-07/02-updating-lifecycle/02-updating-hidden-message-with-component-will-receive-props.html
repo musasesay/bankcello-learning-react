@@ -12,7 +12,8 @@
 <div id="react-container"></div>
   <script type="text/babel">
 
-  const { Component } = React
+  // Children -- utilities
+  const { Component, Children } = React
   const { render } = ReactDOM
 
   class HiddenMessage extends Component {
@@ -39,6 +40,15 @@
       render() {
           const { children } = this.props
           const { hidden } = this.state
+          let sWho = "HiddenMessage::render";
+          console.log(`${sWho}(): SHEMP: Moe, this.state.hidden = `, hidden );
+          console.log(`${sWho}(): SHEMP: Moe, this.props.children = `, children );
+          console.log( children );
+          try {
+            console.log(`${sWho}(): SHEMP: Moe, Children.only(this.props.children) = `, Children.only(children) );
+          }catch(err){
+            console.log(`${sWho}(): SHEMP: Moe, caught error during Children.only(this.props.children): `, err );
+          }
           return (
               <p>
                   {(hidden) ?

@@ -15,9 +15,15 @@
       const { Children } = React
       const { render } = ReactDOM
 
-      const findChild = (children, child) =>
-        Children.toArray(children)
+      const findChild = (children, child) => {
+        console.log("children = ", children )
+        console.log("Array.isArray(children) = ", Array.isArray(children) )
+        console.log("Children.toArray(children) = ", Children.toArray(children) )
+        console.log("Array.isArray(Children.toArray(children)) = ", Array.isArray(Children.toArray(children)) )
+        Children.toArray(children).forEach( (c,i) => { console.log(`c[${i}]=`,c); console.log(`c[${i}].type = `, c.type); } );
+        return Children.toArray(children)
                 .filter(c => c.type === child )[0]
+      }
 
       const WhenTruthy = ({children}) =>
           Children.only(children)
