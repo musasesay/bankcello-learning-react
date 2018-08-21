@@ -1,0 +1,20 @@
+{
+  "name": "03-the-spread-operator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backpackingMeals.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backpackingMeals-run": "babel-node backpackingMeals.js",
+    "backpackingMeals-compile": "babel backpackingMeals.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}

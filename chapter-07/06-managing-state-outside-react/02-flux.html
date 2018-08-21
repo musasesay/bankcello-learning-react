@@ -143,8 +143,10 @@
     ************************************************************/
 	/* Create the appDispatcher... */
     const appDispatcher = new CountdownDispatcher()
+
 	/* Use the appDispatcher to generate our action creators... */
     const actions = countdownActions(appDispatcher)
+
     /* Register the appDispatcher with our store, and
 	* the store sets the initial count to 10...
 	*/
