@@ -6,7 +6,7 @@ import C from '../constants'
 * You'll notice that the RATE_COLOR action passes an ID
 * that's not used by the color reducer.
 *
-* That's because the ID of this action is used to location
+* That's because the ID of this action is used to locate
 * the color in an entirely different reducer.  One action
 * object can impact several reducers.
 */
@@ -25,13 +25,15 @@ export const color = (state = {}, action) => {
         case C.RATE_COLOR:
             // Returns a new color object with
             // the desired rating. Use the ES7 object spread
-            // operator -- in lieue of...
-            //  Object.assign({rating:action.rating}, state)
-            // -- to assign the value of the current state
+            // operator in lieue of...
+            //    Object.assign({rating:action.rating}, state)
+            // ...to assign the value of the current state
             // to a new object.
 			//
-			// Checks that the id's match before replacing,
-			// thus can be used in a shotgun approach
+			// Checks that the id's match before replacing.
+			// If the ID's don't match, simply return the
+            // inputted state unchanged.
+            // Thus this can be used in a shotgun approach
 			// via map() in colors reducer... 
             return (state.id !== action.id) ?
                 state :
@@ -85,6 +87,8 @@ export const colors = (state = [], action) => {
 			// in the state array, and lets the color reducer
 			// figure out if the ids match, and if so,
 			// it replaces with an updated color object.
+            //   "Rate 'em all!
+            //   Let color::RATE_COLOR sort 'em out!"
             return state.map(
                 c => color(c, action)
             )
