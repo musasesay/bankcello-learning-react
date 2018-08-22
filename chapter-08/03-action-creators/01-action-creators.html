@@ -15,7 +15,9 @@
     const { createStore, combineReducers } = Redux
     const { v4 } = uuid
 
+    // BEGIN: Reducers...
     const color = (state = {}, action) => {
+        console.log("=> Reducer: color...state=",state,", action=", action);
         switch (action.type) {
             case "ADD_COLOR":
                 return {
@@ -38,6 +40,7 @@
     }
 
     const colors = (state = [], action) => {
+        console.log("=> Reducer: colors...state=",state,", action=", action);
         switch (action.type) {
             case "ADD_COLOR" :
                 return [
@@ -58,6 +61,7 @@
     }
 
     const sort = (state="SORTED_BY_DATE", action) => {
+        console.log("=> Reducer: sort...state=",state,", action=", action);
         switch (action.type) {
             case "SORT_COLORS":
                 return action.sortBy
@@ -66,31 +70,43 @@
         }
     }
 
+    // END: Reducers...
+
     const store = createStore(
         combineReducers({ colors, sort })
     )
 
+    // BEGIN: Action Creators...
     const addColor = (title, color) =>
-        ({
+        {
+          console.log(`Action Creator: addColor(title=${title}, color=${color})...`) 
+          return {
             type: "ADD_COLOR",
             id: v4(),
             title,
             color,
             timestamp: new Date().toString()
-        })
+          }
+        }
 
     const removeColor = id =>
-        ({
+        {
+            console.log(`Action Creator: removeColor(id=${id})...`)
+            return {
             type: "REMOVE_COLOR",
             id
-        })
+            }
+        }
 
     const rateColor = (id, rating) =>
-        ({
+        {
+            console.log(`Action Creator: rateColor(id=${id}, rating=${rating})...`)
+            return {
             type: "RATE_COLOR",
             id,
             rating
-        })
+            }
+        }
 
     const sortColors = sortedBy =>
         (sortedBy === "rating") ?
@@ -107,11 +123,20 @@
                     type: "SORT_COLORS",
                     sortBy: "SORTED_BY_DATE"
                 })
+    // END: Action Creators...
 
     store.dispatch(addColor("Party Pink", "#F142FF"))
     store.dispatch(addColor("lawn", "#009900"))
     store.dispatch(addColor("Tomato", "#990000"))
     store.dispatch(addColor("Big Blue", "#0000FF"))
+
+    console.log("store.getState()= ", store.getState() );
+
+    console.log("titles = ", store.getState().colors.map(c=>c.title).join(", "))
+
+    console.log("SHEMP: Moe, callin' store.dispatch(sortColors(\"rating\")...");
+
+    store.dispatch(sortColors("rating"))
 
     console.log("store.getState()= ", store.getState() );
 

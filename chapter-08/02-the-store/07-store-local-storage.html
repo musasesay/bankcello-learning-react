@@ -74,7 +74,10 @@
     )
 
     store.subscribe(() => {
-        // Save state to localStorage with key 'redux-store'...
+        // Every time an action is dispatched, save entire state
+        // to localStorage with key 'redux-store'...not necessarily
+        // very practical for a real-world application where you 
+        // may need to paginate millions of entries...
         localStorage['redux-store'] = JSON.stringify(store.getState())
     })
 

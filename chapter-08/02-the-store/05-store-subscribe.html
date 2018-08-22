@@ -74,6 +74,10 @@
 
     console.log('initial state =', store.getState())
 
+    /* Store allows you to subscribe handler functions
+    * that are invoked every time the
+    * store completes dispatching an action.
+    */
     store.subscribe(() =>
       console.log('subscriber: next state =', store.getState())
     )

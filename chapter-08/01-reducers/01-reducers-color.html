@@ -46,11 +46,11 @@
          rating: 0
       }
 
-	  //console.log( "Executing newColor = colorReducer({}, action = ", action, ")...");
+	  console.log( "Executing newColor = colorReducer({}, action = ", action, ")...");
 
       let newColor = colorReducer({}, action)
 
-	  console.log("new Color = ", newColor );
+	  console.log("Afterwards, newColor = ", newColor );
 
       action = {
          type: "RATE_COLOR",
@@ -58,11 +58,26 @@
          rating: 4
       }
 
-	  //console.log( "Executing newColor = colorReducer(newColor, action = ", action, ")...")
+	  console.log( "Executing newColor = colorReducer(newColor, action = ", action, ")...")
 
       newColor = colorReducer(newColor, action)
 
-	  console.log("new Color = ", newColor );
+	  console.log("Afterwards, new Color = ", newColor );
+
+      action =  {
+         type: "ADD_COLOR",
+         id: 34,
+         color: "#FF00FF",
+         title: "Magenta",
+         timestamp: "Thu Mar 10 2016 01:11:12 GMT-0800 (PST)",
+         rating: 0
+      }
+
+	  console.log( "Executing newColor = colorReducer(newColor, action = ", action, ")...")
+
+      newColor = colorReducer(newColor, action)
+
+	  console.log("Afterwards, new Color = ", newColor );
 
   </script>
 </body>
