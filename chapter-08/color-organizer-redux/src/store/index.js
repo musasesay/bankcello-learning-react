@@ -2,27 +2,28 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { colors, sort } from './reducers'
 import stateData from '../../data/initialState'
 
-// When we create the store we create two pieces
+// (1) When we create the store we create two pieces
 // of middleware: the logger and the saver.
 // The data is saved to `localStorage` with middleware
 // instead of the `store` method.
 //
-// Both the logger() and the saver() are middleware
+// (2) Both the logger() and the saver() are middleware
 // functions.  In Redux, middleware is defined as a
 // higher-order function: it's a function that returns
 // a function that returns a function.  The last function
 // returned is invoked every time an action is dispatched.
 //
-// When this function is invoked, you have
+// (3) When this function is invoked, you have
 // access to the action, the store, and the function for
 // sending the action to the next middleware.
 //
-// In the logger, before the action is dispatched, we
+// (4) In the logger, before the action is dispatched, we
 // open a new console group and log the current state
 // and the current action.  Invoking `next` pipes
 // the action on to the next piece of middleware and eventually
 // the reducers.  The state at this point has been updated,
 // so we can log the changed state and end the console group.
+//
 const logger = store => next => action => {
     let result
     console.groupCollapsed("dispatching", action.type)
