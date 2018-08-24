@@ -26,13 +26,15 @@ const AddColorForm = (props, { store }) => {
         _title.focus()
     }
 
-	// About Refs: In this stateless functional component,
-	// `refs` are set with a callback function instead of a string.
-	// The callback function passes the element's instance as
-	// an argument.  This instance can be captured and
-	// saved into a local variable like _title or _color.
-	// Once we've saved the refs to local variables, they
-	// are easily accessed when the form is submitted.
+	/*
+    * About Refs: In this stateless functional component,
+	* `refs` are set with a callback function instead of a string.
+	* The callback function passes the element's instance as
+	* an argument.  This instance can be captured and
+	* saved into a local variable like _title or _color.
+	* Once we've saved the refs to local variables, they
+	* are easily accessed when the form is submitted.
+    */
     return (
         <form className="add-color" onSubmit={submit}>
             <input ref={le_input => { console.log(`SHEMP: Settin' _title = le_input=`, le_input, `, Moe...`); _title = le_input } }
@@ -48,9 +50,9 @@ const AddColorForm = (props, { store }) => {
 
 /* (2) In order to use the store, we must define `contextTypes`
 * on the AddColorForm instance.  This is where we tell React
-* which context variables this component will use.  This is a
-* required step. Without it, the store cannot be retrieved 
-* from the context.
+* which context variables this component will use.  _This_is_a_
+* _required_step._Without_it,_the_store_cannot_be_retrieved_
+* _from_the_context.
 */
 AddColorForm.contextTypes = {
     store: PropTypes.object

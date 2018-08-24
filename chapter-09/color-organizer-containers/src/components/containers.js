@@ -1,3 +1,10 @@
+/*  <*> Any time you want to connect a presentational component to some
+* data, you can wrap that component in a container that controls the
+* properties and connects them to data.
+*
+*   <*> The `NewColor` container, `Menu` container and `Colors` container
+* can all be defined in the same file...(this file...)
+*/
 import PropTypes from 'prop-types'
 import AddColorForm from './ui/AddColorForm'
 import SortMenu from './ui/SortMenu'

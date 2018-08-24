@@ -82,8 +82,8 @@ App.propTypes = {
 /* (2) Next, you will need to specify `childContextTypes`
 * on the component instance and define your context object.
 * This is similar to adding `propTypes` or `defaultProps`
-* to a component instance.  However, for context to work, 
-* you must take this step.
+* to a component instance.  _However,_for_context_to_work,_ 
+* _you_must_take_this_step._
 *
 *  (3) At this point, any children of the `App` component
 *  will have access to the store via the context.  They can
