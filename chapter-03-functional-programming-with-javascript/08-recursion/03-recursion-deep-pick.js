@@ -45,7 +45,7 @@ console.log(`danielle = `, JSON.stringify(danielle, null, '  '));
 
 console.log();
 
-["type", "data.info.fullname.first", "data.info", "rata", "data.info.bullname", "data.sinfo", "data.info.fullname.diddle"].forEach(
+["type", "data.info.fullname.first", "data.info", "rata", "data.info.bullname", "data.sinfo", "data.info.fullname.diddle", "data.info.fullname.biddle.barrows"].forEach(
 	value => {
 		console.log(`deepPick("${value}", danielle)...`);
 		let output = deepPick(value, danielle)
