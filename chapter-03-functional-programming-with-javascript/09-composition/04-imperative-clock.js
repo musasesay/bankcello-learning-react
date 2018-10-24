@@ -9,9 +9,12 @@ function logClockTime() {
     var time = getClockTime();
 
     // Clear the Console and log the time
-    //console.clear();
+    //
+    // Use console.clear() if we're running in a browser...
+    // console.clear(); 
+
 	const BACKSPACE_CHAR=String.fromCharCode(0x08); // Ctrl-H
-	// Use BACKSPACE_CHAR to "clear" the console...
+	// Use a BACKSPACE_CHAR for each char in the time string to "clear" the console in node...
 	for( let i=1; i<=time.length; i++ ){
 		process.stdout.write(BACKSPACE_CHAR);
 	}
