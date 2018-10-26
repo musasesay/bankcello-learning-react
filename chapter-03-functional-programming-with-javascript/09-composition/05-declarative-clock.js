@@ -67,6 +67,15 @@ const appendAMPM = clockTime =>
 */
 const display = target => time => target(time)
 
+/* Or, in English... */
+function displayTargetFunc( targetFunc ){
+    return function displayTargetFunc_displayTime( time ){ 
+        let sWho = "displayTargetFunc_displayTime";
+        console.log(`${sWho}(): Returning targetFunc(time)=${targetFunc.name}(${JSON.stringify(time)})...`);
+        return targetFunc(time);
+    }
+}
+
 /** Takes a template string and uses it to return
 * clock time formatted based upon the criteria
 * from the string. In this example, the template is
@@ -114,9 +123,9 @@ const compose = (...fns) =>
       (arg) =>
       fns.reduce(
         //(composed, f) => f(composed),
-        (composed, f) => {
-			console.log("SHEMP: reduce() callback: Returning " + f.name + "(" + JSON.stringify(composed) + ")..."); 
-			return f(composed)
+        (composed, func) => {
+			console.log(`SHEMP: reduce(composed=${JSON.stringify(composed)},func=${func.name}) Returning ` + func.name + "(" + JSON.stringify(composed) + ")..."); 
+			return func(composed)
 		},
         arg
 )
@@ -170,7 +179,7 @@ const tickTock = (my_format) =>
 		convertToCivilianTime,
 		doubleDigits,
 		formatClock(my_format),
-		display(log)
+		displayTargetFunc(log)
 	)
 
 const format = "The time is hh:mm:ss tt";
