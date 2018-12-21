@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --progress --watch",
     "prestart": "npm run build",
-    "start": "babel-node ./src/server"
+    "start": "babel-node ./src/server",
+    "start-server": "babel-node ./src/server"
   },
   "keywords": [
     "React",
